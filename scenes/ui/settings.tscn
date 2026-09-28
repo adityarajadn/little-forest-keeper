@@ -1,0 +1,188 @@
+[gd_scene format=3 uid="uid://csbwajopubahn"]
+
+[ext_resource type="Script" uid="uid://boj2dwoj3ejju" path="res://scripts/settings_menu.gd" id="1_settings"]
+[ext_resource type="LabelSettings" uid="uid://bpsxc5rier475" path="res://label-heading-2.tres" id="2_head"]
+[ext_resource type="Theme" uid="uid://btntheme00001" path="res://default_theme.tres" id="4_theme"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_overlay"]
+bg_color = Color(0.05, 0.03, 0.02, 0.7)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_panel"]
+content_margin_left = 32.0
+content_margin_top = 28.0
+content_margin_right = 32.0
+content_margin_bottom = 28.0
+bg_color = Color(0.24, 0.14, 0.08, 0.98)
+border_width_left = 4
+border_width_top = 4
+border_width_right = 4
+border_width_bottom = 4
+border_color = Color(0.55, 0.32, 0.15, 1)
+corner_radius_top_left = 12
+corner_radius_top_right = 12
+corner_radius_bottom_right = 12
+corner_radius_bottom_left = 12
+
+[sub_resource type="StyleBoxLine" id="StyleBoxLine_h175o"]
+color = Color(0.54901963, 0.32156864, 0.14901961, 1)
+
+[node name="Settings" type="Control" unique_id=1652404205]
+process_mode = 3
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("4_theme")
+script = ExtResource("1_settings")
+
+[node name="Backdrop" type="Panel" parent="." unique_id=7888633]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_overlay")
+
+[node name="PanelContainer" type="PanelContainer" parent="." unique_id=753144742]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -300.0
+offset_top = -220.0
+offset_right = 300.0
+offset_bottom = 191.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_panel")
+
+[node name="VBox" type="VBoxContainer" parent="PanelContainer" unique_id=1444395462]
+custom_maximum_size = Vector2(-1, 350)
+layout_mode = 2
+theme_override_constants/separation = 16
+
+[node name="Title" type="Label" parent="PanelContainer/VBox" unique_id=1856803792]
+layout_mode = 2
+text = "SETTINGS"
+label_settings = ExtResource("2_head")
+horizontal_alignment = 1
+
+[node name="HSeparator" type="HSeparator" parent="PanelContainer/VBox" unique_id=1122572118]
+layout_mode = 2
+theme_override_styles/separator = SubResource("StyleBoxLine_h175o")
+
+[node name="AudioSection" type="VBoxContainer" parent="PanelContainer/VBox" unique_id=558880449]
+layout_mode = 2
+theme_override_constants/separation = 12
+
+[node name="AudioTitle" type="Label" parent="PanelContainer/VBox/AudioSection" unique_id=1165152537]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.96, 0.65, 0.2, 1)
+theme_override_font_sizes/font_size = 15
+text = "🔊 Volume Settings:"
+
+[node name="MasterContainer" type="HBoxContainer" parent="PanelContainer/VBox/AudioSection" unique_id=895854544]
+layout_mode = 2
+theme_override_constants/separation = 12
+
+[node name="Label" type="Label" parent="PanelContainer/VBox/AudioSection/MasterContainer" unique_id=225098210]
+custom_minimum_size = Vector2(120, 0)
+layout_mode = 2
+theme_override_colors/font_color = Color(0.85, 0.8, 0.7, 1)
+theme_override_font_sizes/font_size = 14
+text = "Main Volume:"
+
+[node name="SliderMaster" type="HSlider" parent="PanelContainer/VBox/AudioSection/MasterContainer" unique_id=5439007]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 4
+value = 80.0
+
+[node name="ValMaster" type="Label" parent="PanelContainer/VBox/AudioSection/MasterContainer" unique_id=1819725029]
+custom_minimum_size = Vector2(45, 0)
+layout_mode = 2
+theme_override_colors/font_color = Color(0.9, 0.85, 0.75, 1)
+theme_override_font_sizes/font_size = 13
+text = "80%"
+horizontal_alignment = 2
+
+[node name="MusicContainer" type="HBoxContainer" parent="PanelContainer/VBox/AudioSection" unique_id=70936000]
+layout_mode = 2
+theme_override_constants/separation = 12
+
+[node name="Label" type="Label" parent="PanelContainer/VBox/AudioSection/MusicContainer" unique_id=642675406]
+custom_minimum_size = Vector2(120, 0)
+layout_mode = 2
+theme_override_colors/font_color = Color(0.85, 0.8, 0.7, 1)
+theme_override_font_sizes/font_size = 14
+text = "BGM"
+
+[node name="SliderMusic" type="HSlider" parent="PanelContainer/VBox/AudioSection/MusicContainer" unique_id=693175048]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 4
+value = 80.0
+
+[node name="ValMusic" type="Label" parent="PanelContainer/VBox/AudioSection/MusicContainer" unique_id=363687318]
+custom_minimum_size = Vector2(45, 0)
+layout_mode = 2
+theme_override_colors/font_color = Color(0.9, 0.85, 0.75, 1)
+theme_override_font_sizes/font_size = 13
+text = "80%"
+horizontal_alignment = 2
+
+[node name="SFXContainer" type="HBoxContainer" parent="PanelContainer/VBox/AudioSection" unique_id=470668141]
+layout_mode = 2
+theme_override_constants/separation = 12
+
+[node name="Label" type="Label" parent="PanelContainer/VBox/AudioSection/SFXContainer" unique_id=2601294]
+custom_minimum_size = Vector2(120, 0)
+layout_mode = 2
+theme_override_colors/font_color = Color(0.85, 0.8, 0.7, 1)
+theme_override_font_sizes/font_size = 14
+text = "SFX"
+
+[node name="SliderSFX" type="HSlider" parent="PanelContainer/VBox/AudioSection/SFXContainer" unique_id=834239600]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 4
+value = 80.0
+
+[node name="ValSFX" type="Label" parent="PanelContainer/VBox/AudioSection/SFXContainer" unique_id=248856331]
+custom_minimum_size = Vector2(45, 0)
+layout_mode = 2
+theme_override_colors/font_color = Color(0.9, 0.85, 0.75, 1)
+theme_override_font_sizes/font_size = 13
+text = "80%"
+horizontal_alignment = 2
+
+[node name="HSeparator2" type="HSeparator" parent="PanelContainer/VBox" unique_id=1225432157]
+layout_mode = 2
+theme_override_styles/separator = SubResource("StyleBoxLine_h175o")
+
+[node name="DisplaySection" type="VBoxContainer" parent="PanelContainer/VBox" unique_id=173445752]
+layout_mode = 2
+theme_override_constants/separation = 10
+
+[node name="DisplayTitle" type="Label" parent="PanelContainer/VBox/DisplaySection" unique_id=242831473]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.96, 0.65, 0.2, 1)
+theme_override_font_sizes/font_size = 15
+text = "🖥️ Screen:"
+
+[node name="CheckFullscreen" type="CheckBox" parent="PanelContainer/VBox/DisplaySection" unique_id=1503837486]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.85, 0.8, 0.7, 1)
+theme_override_font_sizes/font_size = 14
+text = "Fullscreen Mode"
+
+[node name="BtnBack" type="Button" parent="PanelContainer/VBox" unique_id=1614895554]
+custom_minimum_size = Vector2(160, 42)
+layout_mode = 2
+size_flags_horizontal = 4
+text = "Save & Continue"

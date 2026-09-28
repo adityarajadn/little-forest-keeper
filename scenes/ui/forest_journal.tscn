@@ -1,0 +1,387 @@
+[gd_scene format=3 uid="uid://hktp0av6vvoe"]
+
+[ext_resource type="Script" uid="uid://bfifl2mjohfqa" path="res://scripts/forest_journal.gd" id="1_journal"]
+[ext_resource type="Texture2D" uid="uid://11gkne3vw2fc" path="res://assets/sprites/squirrel.png" id="2_demo_tex"]
+[ext_resource type="FontFile" uid="uid://bx71kwlomvom8" path="res://PixelifySans-VariableFont_wght.ttf" id="2_fc3pi"]
+[ext_resource type="Texture2D" uid="uid://b03bri5p5vmhh" path="res://assets/book.png" id="3_u32p8"]
+[ext_resource type="Theme" uid="uid://btntheme00001" path="res://default_theme.tres" id="5_theme"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_overlay"]
+bg_color = Color(0.05, 0.04, 0.03, 0.65)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_cekx0"]
+bg_color = Color(0.6, 0.6, 0.6, 0)
+
+[sub_resource type="LabelSettings" id="LabelSettings_8a02f"]
+font = ExtResource("2_fc3pi")
+outline_size = 10
+outline_color = Color(0.3268262, 0.1547713, 0.056696273, 1)
+shadow_size = 5
+shadow_color = Color(0.27044877, 0.122778736, 0.038829364, 1)
+shadow_offset = Vector2(1.28, 2.68)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_frame"]
+bg_color = Color(0.9, 0.84, 0.74, 1)
+border_width_left = 3
+border_width_top = 3
+border_width_right = 3
+border_width_bottom = 3
+border_color = Color(0.68, 0.58, 0.46, 1)
+corner_radius_top_left = 8
+corner_radius_top_right = 8
+corner_radius_bottom_right = 8
+corner_radius_bottom_left = 8
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_pw15y"]
+bg_color = Color(0.6, 0.6, 0.6, 0)
+
+[sub_resource type="LabelSettings" id="LabelSettings_u32p8"]
+font = ExtResource("2_fc3pi")
+font_size = 32
+outline_size = 10
+outline_color = Color(0.3268262, 0.1547713, 0.056696273, 1)
+shadow_size = 5
+shadow_color = Color(0.27044877, 0.122778736, 0.038829364, 1)
+shadow_offset = Vector2(1.28, 2.68)
+
+[sub_resource type="LabelSettings" id="LabelSettings_hytbu"]
+font = ExtResource("2_fc3pi")
+outline_size = 10
+outline_color = Color(0.3268262, 0.1547713, 0.056696273, 1)
+shadow_size = 5
+shadow_color = Color(0.27044877, 0.122778736, 0.038829364, 1)
+shadow_offset = Vector2(1.28, 2.68)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_bar_bg"]
+bg_color = Color(0.82, 0.75, 0.65, 1)
+corner_radius_top_left = 4
+corner_radius_top_right = 4
+corner_radius_bottom_right = 4
+corner_radius_bottom_left = 4
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_bar_fill"]
+bg_color = Color(0.85, 0.45, 0.15, 1)
+corner_radius_top_left = 4
+corner_radius_top_right = 4
+corner_radius_bottom_right = 4
+corner_radius_bottom_left = 4
+
+[sub_resource type="LabelSettings" id="LabelSettings_7b1jq"]
+font = ExtResource("2_fc3pi")
+outline_size = 10
+outline_color = Color(0.3268262, 0.1547713, 0.056696273, 1)
+shadow_size = 5
+shadow_color = Color(0.27044877, 0.122778736, 0.038829364, 1)
+shadow_offset = Vector2(1.28, 2.68)
+
+[sub_resource type="LabelSettings" id="LabelSettings_hasnl"]
+font = ExtResource("2_fc3pi")
+font_color = Color(0.4296875, 0.35855606, 0.21062943, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_bo48s"]
+bg_color = Color(0.5132896, 0.15315142, 0.12727904, 1)
+corner_radius_top_left = 5
+corner_radius_top_right = 5
+corner_radius_bottom_right = 5
+corner_radius_bottom_left = 5
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_fc3pi"]
+bg_color = Color(0.44870198, 0.12871528, 0.104453854, 1)
+corner_radius_top_left = 5
+corner_radius_top_right = 5
+corner_radius_bottom_right = 5
+corner_radius_bottom_left = 5
+shadow_offset = Vector2(0, 5.64)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_8a02f"]
+bg_color = Color(0.5849744, 0.18020156, 0.14917612, 1)
+corner_radius_top_left = 5
+corner_radius_top_right = 5
+corner_radius_bottom_right = 5
+corner_radius_bottom_left = 5
+
+[node name="ForestJournal" type="Control" unique_id=533169149]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("5_theme")
+script = ExtResource("1_journal")
+
+[node name="Backdrop" type="Panel" parent="." unique_id=1221505207]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_overlay")
+
+[node name="BookContainer" type="Panel" parent="." unique_id=173864065]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -440.0
+offset_top = -270.0
+offset_right = 440.0
+offset_bottom = 270.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="TextureRect" type="TextureRect" parent="BookContainer" unique_id=1761406308]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("3_u32p8")
+expand_mode = 2
+stretch_mode = 3
+
+[node name="BookPages" type="HBoxContainer" parent="BookContainer" unique_id=2045881286]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -62.0
+offset_top = 2.0
+offset_right = 62.0
+offset_bottom = 29.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 41
+
+[node name="LeftPage" type="PanelContainer" parent="BookContainer/BookPages" unique_id=837593348]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_styles/panel = SubResource("StyleBoxFlat_cekx0")
+
+[node name="VBox" type="VBoxContainer" parent="BookContainer/BookPages/LeftPage" unique_id=1700138742]
+layout_mode = 2
+theme_override_constants/separation = 10
+alignment = 1
+
+[node name="AnimalNameLabel" type="Label" parent="BookContainer/BookPages/LeftPage/VBox" unique_id=304751440]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.28, 0.16, 0.08, 1)
+theme_override_font_sizes/font_size = 20
+text = "Tupai Hutan (Squirrel)"
+label_settings = SubResource("LabelSettings_8a02f")
+horizontal_alignment = 1
+
+[node name="TierLabel" type="Label" parent="BookContainer/BookPages/LeftPage/VBox" unique_id=1282055036]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.55, 0.38, 0.18, 1)
+theme_override_font_sizes/font_size = 14
+text = "★☆☆☆  Tahap 1 — Awakening"
+label_settings = SubResource("LabelSettings_8a02f")
+horizontal_alignment = 1
+
+[node name="IllustrationFrame" type="PanelContainer" parent="BookContainer/BookPages/LeftPage/VBox" unique_id=1543773351]
+custom_minimum_size = Vector2(170, 170)
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_styles/panel = SubResource("StyleBoxFlat_frame")
+
+[node name="AnimalTexture" type="TextureRect" parent="BookContainer/BookPages/LeftPage/VBox/IllustrationFrame" unique_id=1831597687]
+texture_filter = 1
+custom_minimum_size = Vector2(120, 120)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+texture = ExtResource("2_demo_tex")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="StatusBadge" type="Label" parent="BookContainer/BookPages/LeftPage/VBox" unique_id=87540375]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.2, 0.65, 0.1, 1)
+theme_override_font_sizes/font_size = 14
+text = "✓ TERCATAT DALAM JURNAL"
+label_settings = SubResource("LabelSettings_8a02f")
+horizontal_alignment = 1
+
+[node name="RightPage" type="PanelContainer" parent="BookContainer/BookPages" unique_id=1405145680]
+layout_mode = 2
+size_flags_horizontal = 3
+offset_transform_enabled = true
+theme_override_styles/panel = SubResource("StyleBoxFlat_pw15y")
+
+[node name="VBox" type="VBoxContainer" parent="BookContainer/BookPages/RightPage" unique_id=954343916]
+layout_mode = 2
+theme_override_constants/separation = 12
+
+[node name="HeaderStats" type="Label" parent="BookContainer/BookPages/RightPage/VBox" unique_id=648322767]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.35, 0.2, 0.1, 1)
+theme_override_font_sizes/font_size = 15
+text = "COLLECTIONS"
+label_settings = SubResource("LabelSettings_u32p8")
+
+[node name="StatContainer" type="VBoxContainer" parent="BookContainer/BookPages/RightPage/VBox" unique_id=182453929]
+layout_mode = 2
+theme_override_constants/separation = 8
+
+[node name="ContribLabel" type="Label" parent="BookContainer/BookPages/RightPage/VBox/StatContainer" unique_id=1456462395]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.3, 0.2, 0.1, 1)
+theme_override_font_sizes/font_size = 12
+text = "Contributions:"
+label_settings = SubResource("LabelSettings_hytbu")
+
+[node name="BarContribution" type="ProgressBar" parent="BookContainer/BookPages/RightPage/VBox/StatContainer" unique_id=738311903]
+custom_minimum_size = Vector2(0, 14)
+layout_mode = 2
+theme_override_styles/background = SubResource("StyleBoxFlat_bar_bg")
+theme_override_styles/fill = SubResource("StyleBoxFlat_bar_fill")
+value = 85.0
+show_percentage = false
+
+[node name="RarityLabel" type="Label" parent="BookContainer/BookPages/RightPage/VBox/StatContainer" unique_id=54225545]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.3, 0.2, 0.1, 1)
+theme_override_font_sizes/font_size = 12
+text = "Rarity:"
+label_settings = SubResource("LabelSettings_hytbu")
+
+[node name="BarRarity" type="ProgressBar" parent="BookContainer/BookPages/RightPage/VBox/StatContainer" unique_id=1390498788]
+custom_minimum_size = Vector2(0, 14)
+layout_mode = 2
+theme_override_styles/background = SubResource("StyleBoxFlat_bar_bg")
+theme_override_styles/fill = SubResource("StyleBoxFlat_bar_fill")
+value = 25.0
+show_percentage = false
+
+[node name="HSeparator1" type="HSeparator" parent="BookContainer/BookPages/RightPage/VBox" unique_id=1222762137]
+layout_mode = 2
+
+[node name="ReqTitle" type="Label" parent="BookContainer/BookPages/RightPage/VBox" unique_id=1882029012]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.4, 0.22, 0.1, 1)
+theme_override_font_sizes/font_size = 13
+text = "ARRIVAL REQUIREMENTS"
+label_settings = SubResource("LabelSettings_7b1jq")
+
+[node name="ReqContent" type="Label" parent="BookContainer/BookPages/RightPage/VBox" unique_id=1753854891]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.2, 0.15, 0.1, 1)
+theme_override_font_sizes/font_size = 12
+text = "Acorn ditaruh di tanah terbuka."
+label_settings = SubResource("LabelSettings_hasnl")
+autowrap_mode = 2
+
+[node name="RoleTitle" type="Label" parent="BookContainer/BookPages/RightPage/VBox" unique_id=1086621870]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.4, 0.22, 0.1, 1)
+theme_override_font_sizes/font_size = 13
+text = "ECOSYSTEM ROLE:"
+label_settings = SubResource("LabelSettings_7b1jq")
+
+[node name="RoleContent" type="Label" parent="BookContainer/BookPages/RightPage/VBox" unique_id=640482919]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.2, 0.15, 0.1, 1)
+theme_override_font_sizes/font_size = 12
+text = "Mengumpulkan acorn dan menanamnya kembali menjadi tunas pohon."
+label_settings = SubResource("LabelSettings_hasnl")
+autowrap_mode = 2
+
+[node name="LoreTitle" type="Label" parent="BookContainer/BookPages/RightPage/VBox" unique_id=1566981228]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.4, 0.22, 0.1, 1)
+theme_override_font_sizes/font_size = 13
+text = "NOTES:"
+label_settings = SubResource("LabelSettings_7b1jq")
+
+[node name="LoreContent" type="Label" parent="BookContainer/BookPages/RightPage/VBox" unique_id=999560089]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.35, 0.25, 0.18, 1)
+theme_override_font_sizes/font_size = 12
+text = "\"Makhluk lincah ini adalah penanam pohon terbaik di hutan.\""
+label_settings = SubResource("LabelSettings_hasnl")
+autowrap_mode = 2
+
+[node name="NavContainer" type="HBoxContainer" parent="BookContainer" unique_id=2056074299]
+layout_mode = 1
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -32.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_constants/separation = 40
+alignment = 1
+
+[node name="BtnPrev" type="Button" parent="BookContainer/NavContainer" unique_id=1765653271]
+custom_minimum_size = Vector2(130, 32)
+layout_mode = 2
+theme_override_fonts/font = ExtResource("2_fc3pi")
+text = "◀ Previous"
+
+[node name="BtnNext" type="Button" parent="BookContainer/NavContainer" unique_id=829720907]
+custom_minimum_size = Vector2(130, 32)
+layout_mode = 2
+theme_override_fonts/font = ExtResource("2_fc3pi")
+text = "Next ▶"
+
+[node name="BtnClose" type="Button" parent="BookContainer" unique_id=1952131421]
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = 48.0
+offset_top = -25.0
+offset_right = 82.0
+offset_bottom = 9.0
+grow_horizontal = 0
+theme_override_fonts/font = ExtResource("2_fc3pi")
+theme_override_styles/normal = SubResource("StyleBoxFlat_bo48s")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_fc3pi")
+theme_override_styles/hover = SubResource("StyleBoxFlat_8a02f")
+text = "X"
+
+[node name="TabsContainer" type="VBoxContainer" parent="BookContainer" unique_id=1518954444]
+layout_mode = 1
+anchors_preset = 9
+anchor_bottom = 1.0
+offset_left = -86.0
+offset_top = 40.0
+offset_right = 2.0
+offset_bottom = -60.0
+grow_vertical = 2
+theme_override_constants/separation = 12
+
+[node name="TabSquirrel" type="Button" parent="BookContainer/TabsContainer" unique_id=1858520188]
+custom_minimum_size = Vector2(80, 50)
+layout_mode = 2
+theme_override_fonts/font = ExtResource("2_fc3pi")
+toggle_mode = true
+button_pressed = true
+text = "SQUIRREL"
+
+[node name="TabRabbit" type="Button" parent="BookContainer/TabsContainer" unique_id=97029682]
+custom_minimum_size = Vector2(80, 50)
+layout_mode = 2
+theme_override_fonts/font = ExtResource("2_fc3pi")
+toggle_mode = true
+text = "RABBIT"
+
+[node name="TabFox" type="Button" parent="BookContainer/TabsContainer" unique_id=1428779506]
+custom_minimum_size = Vector2(80, 50)
+layout_mode = 2
+theme_override_fonts/font = ExtResource("2_fc3pi")
+toggle_mode = true
+text = "FOX"
+
+[node name="TabDeer" type="Button" parent="BookContainer/TabsContainer" unique_id=237211452]
+custom_minimum_size = Vector2(80, 50)
+layout_mode = 2
+theme_override_fonts/font = ExtResource("2_fc3pi")
+toggle_mode = true
+text = "DEER"

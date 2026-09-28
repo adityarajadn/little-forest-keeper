@@ -1,0 +1,11 @@
+[gd_resource type="LabelSettings" format=3 uid="uid://ccmgllavx82or"]
+
+[ext_resource type="FontFile" uid="uid://bx71kwlomvom8" path="res://PixelifySans-VariableFont_wght.ttf" id="1_ox7d4"]
+
+[resource]
+font = ExtResource("1_ox7d4")
+outline_size = 10
+outline_color = Color(0.3268262, 0.1547713, 0.056696273, 1)
+shadow_size = 5
+shadow_color = Color(0.27044877, 0.122778736, 0.038829364, 1)
+shadow_offset = Vector2(1.28, 2.68)

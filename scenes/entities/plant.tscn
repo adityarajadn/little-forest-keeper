@@ -1,0 +1,13 @@
+[gd_scene load_steps=3 format=3]
+
+[ext_resource type="Script" path="res://scripts/plant.gd" id="1_plant"]
+[ext_resource type="Texture2D" path="res://assets/sprites/plant.png" id="2_tex"]
+
+[node name="Plant" type="Node2D"]
+script = ExtResource("1_plant")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(0, -6)
+scale = Vector2(2, 2)
+texture = ExtResource("2_tex")
+hframes = 4

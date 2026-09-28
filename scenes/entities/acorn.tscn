@@ -1,0 +1,13 @@
+[gd_scene load_steps=3 format=3]
+
+[ext_resource type="Script" path="res://scripts/acorn.gd" id="1_acorn"]
+[ext_resource type="Texture2D" path="res://assets/sprites/acorn.png" id="2_tex"]
+
+[node name="Acorn" type="Node2D"]
+script = ExtResource("1_acorn")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(0, -4)
+scale = Vector2(2, 2)
+texture = ExtResource("2_tex")
+hframes = 4

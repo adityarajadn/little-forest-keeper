@@ -1,0 +1,285 @@
+[gd_scene format=3 uid="uid://c34hud000008"]
+
+[ext_resource type="Script" uid="uid://b78ropdy2wlgf" path="res://scripts/hud.gd" id="1_hud"]
+[ext_resource type="LabelSettings" uid="uid://bpsxc5rier475" path="res://label-heading-2.tres" id="2_bo48s"]
+[ext_resource type="LabelSettings" uid="uid://ccmgllavx82or" path="res://label-body.tres" id="2_hqnrr"]
+[ext_resource type="Texture2D" uid="uid://cgcqdmsqwdpfu" path="res://assets/sprites/book-icon.png" id="3_136eg"]
+[ext_resource type="Texture2D" uid="uid://d3qwgojv0vohf" path="res://assets/sprites/snowflakes.png" id="4_0h1do"]
+[ext_resource type="PackedScene" uid="uid://hktp0av6vvoe" path="res://scenes/ui/forest_journal.tscn" id="4_journal"]
+[ext_resource type="Texture2D" uid="uid://dwcjo0qexssu" path="res://assets/sprites/icon-pause.png" id="5_mj13f"]
+[ext_resource type="PackedScene" uid="uid://b3imfe01bl6xf" path="res://scenes/ui/pause_menu.tscn" id="5_pause"]
+[ext_resource type="PackedScene" uid="uid://csbwajopubahn" path="res://scenes/ui/settings.tscn" id="6_settings"]
+[ext_resource type="Texture2D" uid="uid://bxlstbsb0catm" path="res://assets/sprites/leaves.png" id="7_leaves"]
+[ext_resource type="PackedScene" uid="uid://cchklist0001" path="res://scenes/ui/winter_checklist.tscn" id="8_checklist"]
+[ext_resource type="PackedScene" uid="uid://cwinscrn0001" path="res://scenes/ui/win_screen.tscn" id="9_win"]
+[ext_resource type="PackedScene" uid="uid://dmr0fcamx7t56" path="res://addons/virtual_joystick/virtual_joystick_scene.tscn" id="13_4d46k"]
+
+[sub_resource type="Curve" id="Curve_leaf_scale"]
+_data = [Vector2(0, 0.7), 0.0, 0.5, 0, 0, Vector2(0.5, 1), 0.0, 0.0, 0, 0, Vector2(1, 0.75), -0.4, 0.0, 0, 0]
+point_count = 3
+
+[sub_resource type="CurveTexture" id="CurveTexture_h022r"]
+curve = SubResource("Curve_leaf_scale")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_leaves"]
+particle_flag_disable_z = true
+emission_shape = 3
+emission_box_extents = Vector3(720, 20, 1)
+direction = Vector3(0.5, 1, 0)
+spread = 20.0
+initial_velocity_min = 40.0
+initial_velocity_max = 85.0
+angular_velocity_min = -60.0
+angular_velocity_max = 60.0
+gravity = Vector3(15, 45, 0)
+linear_accel_min = -5.0
+linear_accel_max = 10.0
+scale_curve = SubResource("CurveTexture_h022r")
+color = Color(1, 0.95, 0.85, 0.85)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_tefeu"]
+bg_color = Color(0.18653312, 0.084921695, 0.008253341, 1)
+border_width_left = 3
+border_width_top = 3
+border_width_right = 3
+border_width_bottom = 3
+border_color = Color(0.39472884, 0.18209317, 0.10965968, 1)
+corner_radius_top_left = 2
+corner_radius_top_right = 2
+corner_radius_bottom_right = 2
+corner_radius_bottom_left = 2
+expand_margin_left = 3.0
+expand_margin_top = 3.0
+expand_margin_right = 3.0
+expand_margin_bottom = 3.0
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_o6xl0"]
+bg_color = Color(0.33333334, 0.5764706, 0.28627452, 1)
+
+[node name="HUD" type="CanvasLayer" unique_id=12168806]
+process_mode = 3
+script = ExtResource("1_hud")
+
+[node name="FallingLeaves" type="GPUParticles2D" parent="." unique_id=1330610064]
+z_index = 5
+position = Vector2(611, 1)
+amount = 35
+texture = ExtResource("7_leaves")
+lifetime = 10.0
+preprocess = 5.0
+visibility_rect = Rect2(-700, 0, 1400, 800)
+process_material = SubResource("ParticleProcessMaterial_leaves")
+
+[node name="TopBar" type="VBoxContainer" parent="." unique_id=1398872156]
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -178.0
+offset_top = -143.0
+offset_right = 178.0
+offset_bottom = -83.0
+grow_horizontal = 2
+grow_vertical = 0
+
+[node name="HealthLabel" type="Label" parent="TopBar" unique_id=1363216813]
+layout_mode = 2
+theme_override_font_sizes/font_size = 18
+text = "Forest Health: 10% — Awakening"
+label_settings = ExtResource("2_bo48s")
+
+[node name="HealthBar" type="ProgressBar" parent="TopBar" unique_id=1055523444]
+custom_minimum_size = Vector2(0, 18)
+layout_mode = 2
+theme_override_styles/background = SubResource("StyleBoxFlat_tefeu")
+theme_override_styles/fill = SubResource("StyleBoxFlat_o6xl0")
+value = 10.0
+show_percentage = false
+
+[node name="TopRight" type="HBoxContainer" parent="." unique_id=1126351081]
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -340.0
+offset_top = 20.0
+offset_right = -20.0
+offset_bottom = 68.0
+grow_horizontal = 0
+theme_override_constants/separation = 12
+alignment = 2
+
+[node name="DayPanel" type="PanelContainer" parent="TopRight" unique_id=1126351082]
+layout_mode = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="TopRight/DayPanel" unique_id=1026520856]
+layout_mode = 2
+theme_override_constants/margin_left = 12
+theme_override_constants/margin_top = 6
+theme_override_constants/margin_right = 12
+theme_override_constants/margin_bottom = 6
+
+[node name="DayLabel" type="Label" parent="TopRight/DayPanel/MarginContainer" unique_id=1126351083]
+layout_mode = 2
+text = "Autumn Day 1"
+label_settings = ExtResource("2_bo48s")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="BtnChecklist" type="Button" parent="TopRight" unique_id=145581334]
+visible = false
+custom_minimum_size = Vector2(48, 48)
+layout_mode = 2
+theme_override_font_sizes/font_size = 20
+icon = ExtResource("4_0h1do")
+
+[node name="BtnJournal" type="Button" parent="TopRight" unique_id=145581333]
+custom_minimum_size = Vector2(48, 48)
+layout_mode = 2
+theme_override_font_sizes/font_size = 16
+icon = ExtResource("3_136eg")
+
+[node name="BtnPause" type="Button" parent="TopRight" unique_id=1402722449]
+custom_minimum_size = Vector2(48, 48)
+layout_mode = 2
+theme_override_font_sizes/font_size = 20
+icon = ExtResource("5_mj13f")
+icon_alignment = 1
+expand_icon = true
+
+[node name="StatusBanner" type="Label" parent="." unique_id=508652726]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -250.0
+offset_top = -140.0
+offset_right = 250.0
+offset_bottom = -100.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_font_sizes/font_size = 20
+text = "Selamat datang, Little Forest Keeper!"
+label_settings = ExtResource("2_bo48s")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Hotbar" type="HBoxContainer" parent="." unique_id=238194072]
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -360.0
+offset_top = -70.0
+offset_right = 360.0
+offset_bottom = -20.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_constants/separation = 10
+alignment = 1
+
+[node name="BtnAcorn" type="Button" parent="Hotbar" unique_id=271583152]
+custom_minimum_size = Vector2(130, 44)
+layout_mode = 2
+toggle_mode = true
+button_pressed = true
+
+[node name="BtnLabel" type="Label" parent="Hotbar/BtnAcorn" unique_id=1361873444]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "[1] Acorn (6)"
+label_settings = ExtResource("2_hqnrr")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="BtnWater" type="Button" parent="Hotbar" unique_id=1734992985]
+custom_minimum_size = Vector2(130, 44)
+layout_mode = 2
+toggle_mode = true
+
+[node name="BtnLabel" type="Label" parent="Hotbar/BtnWater" unique_id=58923411]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "[2] Water (5)"
+label_settings = ExtResource("2_hqnrr")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="BtnMushroom" type="Button" parent="Hotbar" unique_id=1290390909]
+custom_minimum_size = Vector2(130, 44)
+layout_mode = 2
+toggle_mode = true
+
+[node name="BtnLabel" type="Label" parent="Hotbar/BtnMushroom" unique_id=1037910296]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "[3] Mushroom (5)"
+label_settings = ExtResource("2_hqnrr")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="BtnLeaves" type="Button" parent="Hotbar" unique_id=823343070]
+custom_minimum_size = Vector2(130, 44)
+layout_mode = 2
+toggle_mode = true
+
+[node name="BtnLabel" type="Label" parent="Hotbar/BtnLeaves" unique_id=1202790132]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "[4] Leaves (5)"
+label_settings = ExtResource("2_hqnrr")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="BtnBranch" type="Button" parent="Hotbar" unique_id=823343071]
+custom_minimum_size = Vector2(130, 44)
+layout_mode = 2
+toggle_mode = true
+
+[node name="BtnLabel" type="Label" parent="Hotbar/BtnBranch" unique_id=1652131782]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "[5] Branch (4)"
+label_settings = ExtResource("2_hqnrr")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="ForestJournal" parent="." unique_id=164022384 instance=ExtResource("4_journal")]
+visible = false
+theme = null
+
+[node name="PauseMenu" parent="." unique_id=637211424 instance=ExtResource("5_pause")]
+visible = false
+
+[node name="Settings" parent="." unique_id=321036762 instance=ExtResource("6_settings")]
+visible = false
+
+[node name="WinterChecklist" parent="." unique_id=892301923 instance=ExtResource("8_checklist")]
+visible = false
+
+[node name="WinScreen" parent="." unique_id=892301924 instance=ExtResource("9_win")]
+visible = false
+
+[node name="Virtual Joystick" parent="." unique_id=1281902105 instance=ExtResource("13_4d46k")]

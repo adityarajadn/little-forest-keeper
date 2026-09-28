@@ -1,0 +1,217 @@
+[gd_scene format=3 uid="uid://d108nhxru5xjk"]
+
+[ext_resource type="Script" uid="uid://b6ksusen3tuct" path="res://scripts/how_to_play.gd" id="1_htp"]
+[ext_resource type="LabelSettings" uid="uid://bpsxc5rier475" path="res://label-heading-2.tres" id="2_head"]
+[ext_resource type="Theme" uid="uid://btntheme00001" path="res://default_theme.tres" id="4_theme"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_overlay"]
+bg_color = Color(0.05, 0.03, 0.02, 0.7)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_panel"]
+content_margin_left = 30.0
+content_margin_top = 24.0
+content_margin_right = 30.0
+content_margin_bottom = 24.0
+bg_color = Color(0.24, 0.14, 0.08, 0.98)
+border_width_left = 4
+border_width_top = 4
+border_width_right = 4
+border_width_bottom = 4
+border_color = Color(0.55, 0.32, 0.15, 1)
+corner_radius_top_left = 12
+corner_radius_top_right = 12
+corner_radius_bottom_right = 12
+corner_radius_bottom_left = 12
+
+[sub_resource type="StyleBoxLine" id="StyleBoxLine_e5ls7"]
+color = Color(0.54901963, 0.32156864, 0.14901961, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_card"]
+content_margin_left = 16.0
+content_margin_top = 12.0
+content_margin_right = 16.0
+content_margin_bottom = 12.0
+bg_color = Color(0.18, 0.1, 0.05, 0.75)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0.42, 0.25, 0.12, 1)
+corner_radius_top_left = 8
+corner_radius_top_right = 8
+corner_radius_bottom_right = 8
+corner_radius_bottom_left = 8
+
+[node name="HowToPlay" type="Control" unique_id=1498691014]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("4_theme")
+script = ExtResource("1_htp")
+
+[node name="Backdrop" type="Panel" parent="." unique_id=1643182108]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_overlay")
+
+[node name="PanelContainer" type="PanelContainer" parent="." unique_id=318637552]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -380.0
+offset_top = -260.0
+offset_right = 380.0
+offset_bottom = 260.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_panel")
+
+[node name="VBox" type="VBoxContainer" parent="PanelContainer" unique_id=898934140]
+layout_mode = 2
+theme_override_constants/separation = 14
+
+[node name="Title" type="Label" parent="PanelContainer/VBox" unique_id=1243571230]
+layout_mode = 2
+text = "HOW TO PLAY"
+label_settings = ExtResource("2_head")
+horizontal_alignment = 1
+
+[node name="Subtitle" type="Label" parent="PanelContainer/VBox" unique_id=894770096]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.85, 0.75, 0.6, 1)
+theme_override_font_sizes/font_size = 14
+text = "\"Your aren't building a forest, you are helping nature grow on its own.\""
+horizontal_alignment = 1
+
+[node name="HSeparator" type="HSeparator" parent="PanelContainer/VBox" unique_id=1293645369]
+layout_mode = 2
+theme_override_styles/separator = SubResource("StyleBoxLine_e5ls7")
+
+[node name="ScrollContainer" type="ScrollContainer" parent="PanelContainer/VBox" unique_id=2032788197]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="GuideList" type="VBoxContainer" parent="PanelContainer/VBox/ScrollContainer" unique_id=974862055]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/separation = 10
+
+[node name="Card1" type="PanelContainer" parent="PanelContainer/VBox/ScrollContainer/GuideList" unique_id=1804217879]
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_card")
+
+[node name="Content" type="VBoxContainer" parent="PanelContainer/VBox/ScrollContainer/GuideList/Card1" unique_id=680898635]
+layout_mode = 2
+
+[node name="Head" type="Label" parent="PanelContainer/VBox/ScrollContainer/GuideList/Card1/Content" unique_id=1526885281]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.96, 0.65, 0.2, 1)
+theme_override_font_sizes/font_size = 15
+text = "1. Move Around (Movement)"
+
+[node name="Desc" type="Label" parent="PanelContainer/VBox/ScrollContainer/GuideList/Card1/Content" unique_id=1981980135]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.85, 0.82, 0.75, 1)
+theme_override_font_sizes/font_size = 13
+text = "Use the WASD keys or Arrow Keys to move your little forest keeper."
+autowrap_mode = 2
+
+[node name="Card2" type="PanelContainer" parent="PanelContainer/VBox/ScrollContainer/GuideList" unique_id=6811897]
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_card")
+
+[node name="Content" type="VBoxContainer" parent="PanelContainer/VBox/ScrollContainer/GuideList/Card2" unique_id=636520043]
+layout_mode = 2
+
+[node name="Head" type="Label" parent="PanelContainer/VBox/ScrollContainer/GuideList/Card2/Content" unique_id=1485065399]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.96, 0.65, 0.2, 1)
+theme_override_font_sizes/font_size = 15
+text = "2. Place Resources"
+
+[node name="Desc" type="Label" parent="PanelContainer/VBox/ScrollContainer/GuideList/Card2/Content" unique_id=1908677810]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.85, 0.82, 0.75, 1)
+theme_override_font_sizes/font_size = 13
+text = "Select an item from the Hotbar (Keys 1–4), then click on open ground:
+🌰 Acorn: Attracts Squirrels to come and visit.
+💧 Water: Speeds up the growth of nearby plants by 2×.
+🍄 Mushroom: Improves soil fertility and increases forest health.
+🍂 Leaf: Provides nutrients to nearby bushes."
+autowrap_mode = 2
+
+[node name="Card3" type="PanelContainer" parent="PanelContainer/VBox/ScrollContainer/GuideList" unique_id=42177851]
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_card")
+
+[node name="Content" type="VBoxContainer" parent="PanelContainer/VBox/ScrollContainer/GuideList/Card3" unique_id=2058858326]
+layout_mode = 2
+
+[node name="Head" type="Label" parent="PanelContainer/VBox/ScrollContainer/GuideList/Card3/Content" unique_id=1596450885]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.96, 0.65, 0.2, 1)
+theme_override_font_sizes/font_size = 15
+text = "3. Ecosystem Chain"
+
+[node name="Desc" type="Label" parent="PanelContainer/VBox/ScrollContainer/GuideList/Card3/Content" unique_id=1256669149]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.85, 0.82, 0.75, 1)
+theme_override_font_sizes/font_size = 13
+text = "Animals do not spawn manually. Watch what happens when you place an Acorn. A Squirrel will come, pick it up, and plant a seed. The seed grows into a Bush & Tree, attracting Rabbits. The presence of Rabbits attracts Foxes, while a balanced ecosystem eventually attracts Deer!"
+autowrap_mode = 2
+
+[node name="Card4" type="PanelContainer" parent="PanelContainer/VBox/ScrollContainer/GuideList" unique_id=613504353]
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_card")
+
+[node name="Content" type="VBoxContainer" parent="PanelContainer/VBox/ScrollContainer/GuideList/Card4" unique_id=1776261330]
+layout_mode = 2
+
+[node name="Head" type="Label" parent="PanelContainer/VBox/ScrollContainer/GuideList/Card4/Content" unique_id=1419502137]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.96, 0.65, 0.2, 1)
+theme_override_font_sizes/font_size = 15
+text = "4. Forest Journal"
+
+[node name="Desc" type="Label" parent="PanelContainer/VBox/ScrollContainer/GuideList/Card4/Content" unique_id=1225957497]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.85, 0.82, 0.75, 1)
+theme_override_font_sizes/font_size = 13
+text = "Press the 'J' key or click the book icon in the top-right corner to view information on animals, arrival requirements, and your discovery status."
+autowrap_mode = 2
+
+[node name="Card5" type="PanelContainer" parent="PanelContainer/VBox/ScrollContainer/GuideList" unique_id=252385261]
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_card")
+
+[node name="Content" type="VBoxContainer" parent="PanelContainer/VBox/ScrollContainer/GuideList/Card5" unique_id=429134031]
+layout_mode = 2
+
+[node name="Head" type="Label" parent="PanelContainer/VBox/ScrollContainer/GuideList/Card5/Content" unique_id=248971704]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.96, 0.65, 0.2, 1)
+theme_override_font_sizes/font_size = 15
+text = "5. Win Condition"
+
+[node name="Desc" type="Label" parent="PanelContainer/VBox/ScrollContainer/GuideList/Card5/Content" unique_id=761244500]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.85, 0.82, 0.75, 1)
+theme_override_font_sizes/font_size = 13
+text = "Boost Forest Health to over 90% until the forest reaches the 'Perfect Autumn Forest' stage. The forest will then be ready to withstand the first winter!"
+autowrap_mode = 2
+
+[node name="BtnBack" type="Button" parent="PanelContainer/VBox" unique_id=161180227]
+custom_minimum_size = Vector2(160, 42)
+layout_mode = 2
+size_flags_horizontal = 4
+text = "Back to Main Menu"

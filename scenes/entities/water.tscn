@@ -1,0 +1,23 @@
+[gd_scene format=3 uid="uid://dmumtnxxmujbi"]
+
+[ext_resource type="Script" uid="uid://h1n0nlfpqv5l" path="res://scripts/water_spot.gd" id="1_water"]
+[ext_resource type="Texture2D" uid="uid://cwdcgkxduonlx" path="res://assets/spritesheet.png" id="2_orl5m"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_kbqmw"]
+size = Vector2(36, 38)
+
+[node name="WaterSpot" type="Area2D" unique_id=956709201]
+script = ExtResource("1_water")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1155418749]
+position = Vector2(0.0072114742, 0.3076921)
+scale = Vector2(0.79903847, 0.83653843)
+texture = ExtResource("2_orl5m")
+vframes = 2
+frame = 1
+region_enabled = true
+region_rect = Rect2(16.023981, 96.08838, 47.943626, 95.88861)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1479330317]
+position = Vector2(-1, 1)
+shape = SubResource("RectangleShape2D_kbqmw")
