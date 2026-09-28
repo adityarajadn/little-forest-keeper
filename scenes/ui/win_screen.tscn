@@ -1,0 +1,119 @@
+[gd_scene format=3 uid="uid://cwinscrn0001"]
+
+[ext_resource type="Script" uid="uid://fg5vc5maohu4" path="res://scripts/win_screen.gd" id="1_win"]
+[ext_resource type="Theme" uid="uid://btntheme00001" path="res://default_theme.tres" id="4_theme"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_overlay"]
+bg_color = Color(0.04, 0.05, 0.08, 0.85)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_panel"]
+content_margin_left = 36.0
+content_margin_top = 32.0
+content_margin_right = 36.0
+content_margin_bottom = 32.0
+bg_color = Color(0.18, 0.16, 0.22, 0.98)
+border_width_left = 4
+border_width_top = 4
+border_width_right = 4
+border_width_bottom = 4
+border_color = Color(0.65, 0.72, 0.85, 1)
+corner_radius_top_left = 12
+corner_radius_top_right = 12
+corner_radius_bottom_right = 12
+corner_radius_bottom_left = 12
+
+[sub_resource type="LabelSettings" id="LabelSettings_svix1"]
+outline_size = 5
+outline_color = Color(0.2534624, 0.32901415, 0.47135288, 1)
+shadow_size = 8
+shadow_color = Color(0.119240604, 0.10733219, 0.14897254, 1)
+shadow_offset = Vector2(1.075, 1.075)
+
+[sub_resource type="StyleBoxLine" id="StyleBoxLine_mfe6v"]
+color = Color(0.6509804, 0.72156864, 0.8509804, 1)
+
+[node name="WinScreen" type="Control" unique_id=666886360]
+process_mode = 2
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("4_theme")
+script = ExtResource("1_win")
+
+[node name="Backdrop" type="Panel" parent="." unique_id=1435744696]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_overlay")
+
+[node name="PanelContainer" type="PanelContainer" parent="." unique_id=1286749916]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -220.0
+offset_top = -220.0
+offset_right = 220.0
+offset_bottom = 220.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_panel")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="PanelContainer" unique_id=568521896]
+layout_mode = 2
+theme_override_constants/separation = 14
+
+[node name="Title" type="Label" parent="PanelContainer/VBoxContainer" unique_id=1359171119]
+layout_mode = 2
+text = "The Forest is Ready for Winter"
+label_settings = SubResource("LabelSettings_svix1")
+horizontal_alignment = 1
+
+[node name="Subtitle" type="Label" parent="PanelContainer/VBoxContainer" unique_id=81568097]
+layout_mode = 2
+text = "“Winter can wait. The forest is ready.”
+Terima kasih, Little Forest Keeper!"
+label_settings = SubResource("LabelSettings_svix1")
+horizontal_alignment = 1
+
+[node name="HSeparator" type="HSeparator" parent="PanelContainer/VBoxContainer" unique_id=681224513]
+layout_mode = 2
+theme_override_styles/separator = SubResource("StyleBoxLine_mfe6v")
+
+[node name="CensusTitle" type="Label" parent="PanelContainer/VBoxContainer" unique_id=65507496]
+layout_mode = 2
+text = "Statistics:"
+label_settings = SubResource("LabelSettings_svix1")
+
+[node name="AnimalCensus" type="Label" parent="PanelContainer/VBoxContainer" unique_id=1054762736]
+layout_mode = 2
+text = "🐿️ Squirrel: 0
+🐇 Rabbit: 0
+🦊 Fox: 0
+🦌 Deer: 0
+🍂 Day Passed: 1 Hari"
+label_settings = SubResource("LabelSettings_svix1")
+
+[node name="HealthValue" type="Label" parent="PanelContainer/VBoxContainer" unique_id=1795359530]
+layout_mode = 2
+text = "Forest Health: 100%"
+label_settings = SubResource("LabelSettings_svix1")
+horizontal_alignment = 1
+
+[node name="BtnPlayAgain" type="Button" parent="PanelContainer/VBoxContainer" unique_id=1725547647]
+custom_minimum_size = Vector2(0, 42)
+layout_mode = 2
+text = "Play Again"
+
+[node name="BtnMainMenu" type="Button" parent="PanelContainer/VBoxContainer" unique_id=1385997621]
+custom_minimum_size = Vector2(0, 38)
+layout_mode = 2
+text = "Back to Main Menu"

@@ -1,0 +1,126 @@
+[gd_scene format=3 uid="uid://cchklist0001"]
+
+[ext_resource type="Script" uid="uid://b3isrym7i78vu" path="res://scripts/winter_checklist.gd" id="1_check"]
+[ext_resource type="FontFile" uid="uid://bx71kwlomvom8" path="res://PixelifySans-VariableFont_wght.ttf" id="3_3gvss"]
+[ext_resource type="LabelSettings" uid="uid://ccmgllavx82or" path="res://label-body.tres" id="3_body"]
+[ext_resource type="Theme" uid="uid://btntheme00001" path="res://default_theme.tres" id="4_theme"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_overlay"]
+bg_color = Color(0.05, 0.03, 0.02, 0.75)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_panel"]
+content_margin_left = 32.0
+content_margin_top = 28.0
+content_margin_right = 32.0
+content_margin_bottom = 28.0
+bg_color = Color(0.24, 0.14, 0.08, 0.98)
+border_width_left = 4
+border_width_top = 4
+border_width_right = 4
+border_width_bottom = 4
+border_color = Color(0.55, 0.32, 0.15, 1)
+corner_radius_top_left = 12
+corner_radius_top_right = 12
+corner_radius_bottom_right = 12
+corner_radius_bottom_left = 12
+
+[sub_resource type="LabelSettings" id="LabelSettings_l3kgm"]
+font = ExtResource("3_3gvss")
+font_size = 24
+font_color = Color(0.30207223, 0.80909455, 0.99999994, 1)
+outline_size = 10
+outline_color = Color(0.3268262, 0.1547713, 0.056696273, 1)
+shadow_size = 5
+shadow_color = Color(0.27044877, 0.122778736, 0.038829364, 1)
+shadow_offset = Vector2(1.28, 2.68)
+
+[node name="WinterChecklist" type="Control" unique_id=779558963]
+process_mode = 2
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("4_theme")
+script = ExtResource("1_check")
+
+[node name="Backdrop" type="Panel" parent="." unique_id=349405122]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_overlay")
+
+[node name="PanelContainer" type="PanelContainer" parent="." unique_id=1193814094]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -220.0
+offset_top = -180.0
+offset_right = 220.0
+offset_bottom = 180.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_panel")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="PanelContainer" unique_id=953217970]
+layout_mode = 2
+theme_override_constants/separation = 16
+
+[node name="Title" type="Label" parent="PanelContainer/VBoxContainer" unique_id=1209494827]
+layout_mode = 2
+text = "WINTER PREPARATION "
+label_settings = SubResource("LabelSettings_l3kgm")
+horizontal_alignment = 1
+
+[node name="Desc" type="Label" parent="PanelContainer/VBoxContainer" unique_id=1333688174]
+layout_mode = 2
+text = "Temperatures are dropping, and the first snow is almost here. Make sure the forest has enough food, water, and shelter for all its inhabitants:"
+label_settings = ExtResource("3_body")
+horizontal_alignment = 1
+autowrap_mode = 2
+
+[node name="GridContainer" type="VBoxContainer" parent="PanelContainer/VBoxContainer" unique_id=451817668]
+layout_mode = 2
+theme_override_constants/separation = 8
+
+[node name="FoodCheck" type="Label" parent="PanelContainer/VBoxContainer/GridContainer" unique_id=53674884]
+layout_mode = 2
+text = "🌰 Food Supply (0/3)"
+label_settings = ExtResource("3_body")
+
+[node name="WaterCheck" type="Label" parent="PanelContainer/VBoxContainer/GridContainer" unique_id=1265971518]
+layout_mode = 2
+text = "💧 Water Source (0/1)"
+label_settings = ExtResource("3_body")
+
+[node name="PlantsCheck" type="Label" parent="PanelContainer/VBoxContainer/GridContainer" unique_id=1853076841]
+layout_mode = 2
+text = "🌿 Grows Plants (0/3)"
+label_settings = ExtResource("3_body")
+
+[node name="ShelterCheck" type="Label" parent="PanelContainer/VBoxContainer/GridContainer" unique_id=1944775465]
+layout_mode = 2
+text = "🪺 Nests (0/1)"
+label_settings = ExtResource("3_body")
+
+[node name="AnimalCheck" type="Label" parent="PanelContainer/VBoxContainer/GridContainer" unique_id=1674416340]
+layout_mode = 2
+text = " 🐾 Animals (0/3)"
+label_settings = ExtResource("3_body")
+
+[node name="BtnTriggerWinter" type="Button" parent="PanelContainer/VBoxContainer" unique_id=1056125858]
+custom_minimum_size = Vector2(0, 44)
+layout_mode = 2
+text = "Fufill before Winter Fall"
+
+[node name="BtnClose" type="Button" parent="PanelContainer/VBoxContainer" unique_id=2136064897]
+custom_minimum_size = Vector2(0, 36)
+layout_mode = 2
+text = "Close"
