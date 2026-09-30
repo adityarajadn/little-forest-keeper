@@ -118,7 +118,7 @@ func _finish_planting() -> void:
 	var parent_node = get_parent()
 	if parent_node and gm:
 		var plant = gm.plant_scene.instantiate()
-		plant.position = global_position
+		plant.position = global_position.snapped(Vector2.ONE * gm.GRID_SIZE) + Vector2(gm.GRID_SIZE/2, gm.GRID_SIZE/2)
 		parent_node.add_child(plant)
 		gm.add_health(1.5)
 		gm.emit_signal("status_message", "The Squirrel has planted a new seeds!")

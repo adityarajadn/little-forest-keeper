@@ -22,6 +22,7 @@ SceneTransition="*res://scenes/ui/scene_transition.tscn"
 UiAnimationHandler="*res://addons/godot_ui_animations/UIAnimationHandler.tscn"
 AudioManager="*res://scripts/audio_manager.gd"
 ButtonAudioHandler="*res://scripts/button_audio_handler.gd"
+GameManager="*uid://camd22j6gr2gx"
 
 [display]
 

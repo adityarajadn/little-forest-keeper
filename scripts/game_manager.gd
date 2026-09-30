@@ -1,17 +1,17 @@
 extends Node
-class_name GameManager
 
 signal health_changed(new_health: float, old_health: float)
 signal inventory_changed()
 signal species_discovered(species_name: String)
 signal status_message(text: String)
 signal day_changed(new_day: int)
-signal day_time_updated(day_progress: float) # 0.0 to 1.0 (morning -> noon -> dusk -> night)
+signal day_time_updated(day_progress: float)
 
+const GRID_SIZE: float = 32.0
 
 var current_day: int = 1
 var day_timer: float = 0.0
-@export var day_duration: float = 70.0 # 70 seconds per in-game day (balanced autumn progression)
+@export var day_duration: float = 70.0
 
 var total_nest: int = 0
 
@@ -228,9 +228,10 @@ func _spawn_natural_resources() -> void:
 	if not world_layer:
 		world_layer = tree_root.current_scene
 		
+	var grid_size: float = GRID_SIZE
 	var pos = Vector2(
-		randf_range(80, 1200),
-		randf_range(80, 640)
+		randi_range(1, 36) * grid_size + (grid_size / 2.0),
+		randi_range(1, 18) * grid_size + (grid_size / 2.0)
 	)
 	
 	var choice = randf()
@@ -261,10 +262,13 @@ func _spawn_morning_windfall() -> void:
 	if not world_layer:
 		world_layer = tree_root.current_scene
 
-	# Spawn 3-4 natural items across the forest every morning
+	var grid_size: float = GRID_SIZE
 	var count = randi_range(3, 4)
 	for i in range(count):
-		var pos = Vector2(randf_range(90, 1180), randf_range(90, 630))
+		var pos = Vector2(
+			randi_range(1, 36) * grid_size + (grid_size / 2.0),
+			randi_range(1, 18) * grid_size + (grid_size / 2.0)
+		)
 		var roll = randf()
 		if roll < 0.30:
 			var ac = acorn_scene.instantiate()

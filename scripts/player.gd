@@ -1,49 +1,38 @@
 extends CharacterBody2D
 class_name ForestKeeperPlayer
 
-@export var speed: float = 180.0
-@export var placement_range: float = 280.0
+@export var speed: float = 8.0
+@export var placement_range: float = 256.0
 @export var show_cursor: bool = true
 
 @onready var sprite: Sprite2D = $Sprite2D
 
+var target_pos: Vector2
+var is_moving: bool = false
 var anim_timer: float = 0.0
 var footstep_timer: float = 0.0
 var footstep_interval: float = 0.3
-
 var facing_dir: int = 1
-var is_moving: bool = false
 var preview_pos: Vector2 = Vector2.ZERO
 
 
 func _ready() -> void:
 	add_to_group("player")
+	target_pos = position.snapped(Vector2.ONE * GameManager.GRID_SIZE)
+	position = target_pos
 
 
 func _unhandled_input(event: InputEvent) -> void:
 	if event is InputEventKey and event.is_pressed():
-
 		var gm = get_node_or_null("/root/Main/GameManager")
-
 		if gm:
 			match event.keycode:
-				KEY_1:
-					gm.select_resource("acorn")
-
-				KEY_2:
-					gm.select_resource("water")
-
-				KEY_3:
-					gm.select_resource("mushroom")
-
-				KEY_4:
-					gm.select_resource("leaves")
-
-				KEY_5:
-					gm.select_resource("branch")
-
-				KEY_E:
-					_try_pickup_resource()
+				KEY_1: gm.select_resource("acorn")
+				KEY_2: gm.select_resource("water")
+				KEY_3: gm.select_resource("mushroom")
+				KEY_4: gm.select_resource("leaves")
+				KEY_5: gm.select_resource("branch")
+				KEY_E: _try_pickup_resource()
 
 	if event is InputEventMouseButton:
 		if event.button_index == MOUSE_BUTTON_LEFT and event.is_pressed():
@@ -51,11 +40,9 @@ func _unhandled_input(event: InputEvent) -> void:
 
 
 func _physics_process(delta: float) -> void:
-
 	# ==========================================
-	# MOVEMENT - MENGGUNAKAN INPUT MAP
+	# MOVEMENT - KEMBALI KE FREE MOVEMENT
 	# ==========================================
-
 	var input_vector := Input.get_vector(
 		"move_left",
 		"move_right",
@@ -64,101 +51,59 @@ func _physics_process(delta: float) -> void:
 	)
 
 	if input_vector != Vector2.ZERO:
-
 		velocity = velocity.move_toward(
-			input_vector * speed,
-			speed * 10.0 * delta
+			input_vector * 180.0, # speed asal
+			180.0 * 10.0 * delta
 		)
-
 		anim_timer += delta * 8.0
 		is_moving = true
 
-		# ==========================================
-		# FOOTSTEP SOUND
-		# ==========================================
-
 		footstep_timer -= delta
-
 		if footstep_timer <= 0.0:
-			AudioManager.play_sfx(
-				preload("res://assets/audio/SFX Grass Step.wav")
-			)
-
+			AudioManager.play_sfx(preload("res://assets/audio/SFX Grass Step.wav"))
 			footstep_timer = footstep_interval
-
-		# ==========================================
-		# MENENTUKAN ARAH KARAKTER
-		# ==========================================
 
 		if input_vector.x > 0.05:
 			facing_dir = 1
-
 		elif input_vector.x < -0.05:
 			facing_dir = -1
-
 	else:
-
-		velocity = velocity.move_toward(
-			Vector2.ZERO,
-			speed * 12.0 * delta
-		)
-
+		velocity = velocity.move_toward(Vector2.ZERO, 180.0 * 12.0 * delta)
 		anim_timer += delta * 3.5
 		is_moving = false
-
-		# Reset supaya ketika mulai jalan lagi
-		# suara langsung dimainkan
 		footstep_timer = 0.0
-
 
 	move_and_slide()
 
+	# BATAS AREA
+	position.x = clamp(position.x, 30.0, 1250.0)
+	position.y = clamp(position.y, 30.0, 690.0)
 
 	# ==========================================
-	# BATAS AREA PLAYER
+	# PLACEMENT - TETAP GRID
 	# ==========================================
-
-	position.x = clamp(
-		position.x,
-		30.0,
-		1250.0
-	)
-
-	position.y = clamp(
-		position.y,
-		30.0,
-		690.0
-	)
-
-
-	# ==========================================
-	# UPDATE TARGET CURSOR
-	# ==========================================
-
 	var mouse_world := get_global_mouse_position()
-	var diff := mouse_world - global_position
+	
+	var cell_x: int = int(floor(mouse_world.x / GameManager.GRID_SIZE))
+	var cell_y: int = int(floor(mouse_world.y / GameManager.GRID_SIZE))
+	var snapped_mouse: Vector2 = Vector2((cell_x + 0.5) * GameManager.GRID_SIZE, (cell_y + 0.5) * GameManager.GRID_SIZE)
+	
+	var diff: Vector2 = mouse_world - global_position
 
 	if diff.length() > placement_range:
-		preview_pos = (
-			global_position
-			+ diff.normalized() * placement_range
-		)
+		var clamped_pos: Vector2 = global_position + diff.normalized() * placement_range
+		var clamped_cell_x: int = int(floor(clamped_pos.x / GameManager.GRID_SIZE))
+		var clamped_cell_y: int = int(floor(clamped_pos.y / GameManager.GRID_SIZE))
+		preview_pos = Vector2((clamped_cell_x + 0.5) * GameManager.GRID_SIZE, (clamped_cell_y + 0.5) * GameManager.GRID_SIZE)
 	else:
-		preview_pos = mouse_world
-
-
-	# ==========================================
-	# ANIMATION
-	# ==========================================
+		preview_pos = snapped_mouse
 
 	if sprite:
-
+		sprite.flip_h = (facing_dir < 0)
 		if is_moving:
 			sprite.frame = 4 + (int(anim_timer) % 4)
-
 		else:
 			sprite.frame = int(anim_timer) % 4
-
 
 	queue_redraw()
 

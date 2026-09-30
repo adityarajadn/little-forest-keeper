@@ -23,7 +23,7 @@ func change_scene(scene_path: String) -> void:
 		fade_overlay.visible = true
 		fade_overlay.mouse_filter = Control.MOUSE_FILTER_STOP
 	
-	if GuiTransitions.has_method("show"):
+	if GuiTransitions and GuiTransitions.has_method("show"):
 		GuiTransitions.show("SceneFade")
 		await GuiTransitions.show_completed
 	else:
@@ -33,7 +33,7 @@ func change_scene(scene_path: String) -> void:
 	await get_tree().process_frame
 	await get_tree().process_frame
 	
-	if GuiTransitions.has_method("hide"):
+	if GuiTransitions and GuiTransitions.has_method("hide"):
 		GuiTransitions.hide("SceneFade")
 		await GuiTransitions.hide_completed
 	else:
@@ -54,7 +54,7 @@ func reload_scene() -> void:
 		fade_overlay.visible = true
 		fade_overlay.mouse_filter = Control.MOUSE_FILTER_STOP
 	
-	if GuiTransitions.has_method("show"):
+	if GuiTransitions and GuiTransitions.has_method("show"):
 		GuiTransitions.show("SceneFade")
 		await GuiTransitions.show_completed
 	else:
@@ -64,7 +64,7 @@ func reload_scene() -> void:
 	await get_tree().process_frame
 	await get_tree().process_frame
 	
-	if GuiTransitions.has_method("hide"):
+	if GuiTransitions and GuiTransitions.has_method("hide"):
 		GuiTransitions.hide("SceneFade")
 		await GuiTransitions.hide_completed
 	else:
