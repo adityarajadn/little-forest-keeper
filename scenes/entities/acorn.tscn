@@ -1,12 +1,12 @@
-[gd_scene load_steps=3 format=3]
+[gd_scene format=3 uid="uid://b8q0qtm6uxc4b"]
 
-[ext_resource type="Script" path="res://scripts/acorn.gd" id="1_acorn"]
-[ext_resource type="Texture2D" path="res://assets/sprites/acorn.png" id="2_tex"]
+[ext_resource type="Script" uid="uid://b34x08oxvuswg" path="res://scripts/acorn.gd" id="1_acorn"]
+[ext_resource type="Texture2D" uid="uid://cihacc6csn3vq" path="res://assets/sprites/acorn.png" id="2_tex"]
 
-[node name="Acorn" type="Node2D"]
+[node name="Acorn" type="Node2D" unique_id=1926596948]
 script = ExtResource("1_acorn")
 
-[node name="Sprite2D" type="Sprite2D" parent="."]
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1359521519]
 position = Vector2(0, -4)
 scale = Vector2(2, 2)
 texture = ExtResource("2_tex")

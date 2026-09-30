@@ -12,6 +12,7 @@ class_name MainMenu
 @onready var credits_panel: Control = $Credits
 
 func _ready() -> void:
+	AudioManager.play_music(preload("res://assets/audio/Main Menu BGM.mp3"))
 	if btn_play:
 		btn_play.pressed.connect(_on_play_pressed)
 	if btn_how_to_play:

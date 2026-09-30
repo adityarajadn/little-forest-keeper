@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://bxn7iwjbe6ffa"
+path="res://.godot/imported/SFX Grass Step.mp3-959d04262a1aab4dfc6cf0558d08e221.mp3str"
+
+[deps]
+
+source_file="res://assets/audio/SFX Grass Step.mp3"
+dest_files=["res://.godot/imported/SFX Grass Step.mp3-959d04262a1aab4dfc6cf0558d08e221.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

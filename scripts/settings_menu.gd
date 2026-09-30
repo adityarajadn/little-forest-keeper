@@ -40,17 +40,17 @@ func close_menu() -> void:
 func _on_master_changed(val: float) -> void:
 	if label_master:
 		label_master.text = "%d%%" % int(val)
-	_set_bus_volume("Master", val)
+	AudioManager.set_volume("Master", val / 100.0)
 
 func _on_music_changed(val: float) -> void:
 	if label_music:
 		label_music.text = "%d%%" % int(val)
-	_set_bus_volume("Music", val)
+	AudioManager.set_volume("Music", val / 100.0)
 
 func _on_sfx_changed(val: float) -> void:
 	if label_sfx:
 		label_sfx.text = "%d%%" % int(val)
-	_set_bus_volume("SFX", val)
+	AudioManager.set_volume("SFX", val / 100.0)
 
 func _set_bus_volume(bus_name: String, val: float) -> void:
 	var bus_idx = AudioServer.get_bus_index(bus_name)

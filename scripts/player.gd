@@ -8,6 +8,9 @@ class_name ForestKeeperPlayer
 @onready var sprite: Sprite2D = $Sprite2D
 
 var anim_timer: float = 0.0
+var footstep_timer: float = 0.0
+var footstep_interval: float = 0.3
+
 var facing_dir: int = 1
 var is_moving: bool = false
 var preview_pos: Vector2 = Vector2.ZERO
@@ -70,9 +73,26 @@ func _physics_process(delta: float) -> void:
 		anim_timer += delta * 8.0
 		is_moving = true
 
-		# Menentukan arah karakter
+		# ==========================================
+		# FOOTSTEP SOUND
+		# ==========================================
+
+		footstep_timer -= delta
+
+		if footstep_timer <= 0.0:
+			AudioManager.play_sfx(
+				preload("res://assets/audio/SFX Grass Step.wav")
+			)
+
+			footstep_timer = footstep_interval
+
+		# ==========================================
+		# MENENTUKAN ARAH KARAKTER
+		# ==========================================
+
 		if input_vector.x > 0.05:
 			facing_dir = 1
+
 		elif input_vector.x < -0.05:
 			facing_dir = -1
 
@@ -86,6 +106,10 @@ func _physics_process(delta: float) -> void:
 		anim_timer += delta * 3.5
 		is_moving = false
 
+		# Reset supaya ketika mulai jalan lagi
+		# suara langsung dimainkan
+		footstep_timer = 0.0
+
 
 	move_and_slide()
 
@@ -94,8 +118,17 @@ func _physics_process(delta: float) -> void:
 	# BATAS AREA PLAYER
 	# ==========================================
 
-	position.x = clamp(position.x, 30.0, 1250.0)
-	position.y = clamp(position.y, 30.0, 690.0)
+	position.x = clamp(
+		position.x,
+		30.0,
+		1250.0
+	)
+
+	position.y = clamp(
+		position.y,
+		30.0,
+		690.0
+	)
 
 
 	# ==========================================
@@ -106,7 +139,10 @@ func _physics_process(delta: float) -> void:
 	var diff := mouse_world - global_position
 
 	if diff.length() > placement_range:
-		preview_pos = global_position + diff.normalized() * placement_range
+		preview_pos = (
+			global_position
+			+ diff.normalized() * placement_range
+		)
 	else:
 		preview_pos = mouse_world
 
@@ -119,6 +155,7 @@ func _physics_process(delta: float) -> void:
 
 		if is_moving:
 			sprite.frame = 4 + (int(anim_timer) % 4)
+
 		else:
 			sprite.frame = int(anim_timer) % 4
 
@@ -162,14 +199,18 @@ func _try_place_resource() -> void:
 	if _is_modal_active():
 		return
 
-	var gm = get_node_or_null("/root/Main/GameManager")
+	var gm = get_node_or_null(
+		"/root/Main/GameManager"
+	)
 
 	if not gm:
 		return
 
 	var main_scene = get_tree().current_scene
 
-	var parent_layer = main_scene.get_node_or_null("WorldObjects")
+	var parent_layer = main_scene.get_node_or_null(
+		"WorldObjects"
+	)
 
 	if not parent_layer:
 		parent_layer = main_scene
@@ -189,7 +230,9 @@ func _try_pickup_resource() -> void:
 	if _is_modal_active():
 		return
 
-	var gm = get_node_or_null("/root/Main/GameManager")
+	var gm = get_node_or_null(
+		"/root/Main/GameManager"
+	)
 
 	if not gm:
 		return
@@ -201,7 +244,9 @@ func _try_pickup_resource() -> void:
 	# 1. CEK SUMBER AIR
 	# ==========================================
 
-	var waters = get_tree().get_nodes_in_group("water")
+	var waters = get_tree().get_nodes_in_group(
+		"water"
+	)
 
 	var closest_water: Node2D = null
 	var min_water_dist: float = 68.0
@@ -230,7 +275,10 @@ func _try_pickup_resource() -> void:
 
 			return
 
-		gm.add_resource("water", 1)
+		gm.add_resource(
+			"water",
+			1
+		)
 
 		gm.status_message.emit(
 			"Collected fresh water from spring (+1)"
@@ -257,7 +305,9 @@ func _try_pickup_resource() -> void:
 
 	for group in candidate_groups:
 
-		var nodes = get_tree().get_nodes_in_group(group)
+		var nodes = get_tree().get_nodes_in_group(
+			group
+		)
 
 		for node in nodes:
 
@@ -268,6 +318,7 @@ func _try_pickup_resource() -> void:
 				continue
 
 			if group == "acorns":
+
 				if node.get("is_claimed") == true:
 					continue
 
@@ -337,7 +388,9 @@ func _draw() -> void:
 		return
 
 
-	var local_preview := to_local(preview_pos)
+	var local_preview := to_local(
+		preview_pos
+	)
 
 	draw_arc(
 		local_preview,

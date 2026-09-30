@@ -283,3 +283,4 @@ visible = false
 visible = false
 
 [node name="Virtual Joystick" parent="." unique_id=1281902105 instance=ExtResource("13_4d46k")]
+visible = false

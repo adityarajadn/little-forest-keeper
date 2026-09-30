@@ -322,13 +322,13 @@ alignment = 1
 custom_minimum_size = Vector2(130, 32)
 layout_mode = 2
 theme_override_fonts/font = ExtResource("2_fc3pi")
-text = "◀ Previous"
+text = "< Previous"
 
 [node name="BtnNext" type="Button" parent="BookContainer/NavContainer" unique_id=829720907]
 custom_minimum_size = Vector2(130, 32)
 layout_mode = 2
 theme_override_fonts/font = ExtResource("2_fc3pi")
-text = "Next ▶"
+text = "Next >"
 
 [node name="BtnClose" type="Button" parent="BookContainer" unique_id=1952131421]
 layout_mode = 1
@@ -385,3 +385,10 @@ layout_mode = 2
 theme_override_fonts/font = ExtResource("2_fc3pi")
 toggle_mode = true
 text = "DEER"
+
+[node name="TabBird" type="Button" parent="BookContainer/TabsContainer" unique_id=825677357]
+custom_minimum_size = Vector2(80, 50)
+layout_mode = 2
+theme_override_fonts/font = ExtResource("2_fc3pi")
+toggle_mode = true
+text = "BIRD"

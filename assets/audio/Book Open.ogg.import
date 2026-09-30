@@ -1,0 +1,19 @@
+[remap]
+
+importer="oggvorbisstr"
+type="AudioStreamOggVorbis"
+uid="uid://cn61tysy1c2uj"
+path="res://.godot/imported/Book Open.ogg-a22c1ffb35ec9c5aac2641615e71cd30.oggvorbisstr"
+
+[deps]
+
+source_file="res://assets/audio/Book Open.ogg"
+dest_files=["res://.godot/imported/Book Open.ogg-a22c1ffb35ec9c5aac2641615e71cd30.oggvorbisstr"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

@@ -1,12 +1,12 @@
-[gd_scene load_steps=3 format=3]
+[gd_scene format=3 uid="uid://cymdtqs3pqtna"]
 
-[ext_resource type="Script" path="res://scripts/branch.gd" id="1_branch"]
-[ext_resource type="Texture2D" path="res://assets/sprites/branch.png" id="2_tex"]
+[ext_resource type="Script" uid="uid://7k7hbpvydb17" path="res://scripts/branch.gd" id="1_branch"]
+[ext_resource type="Texture2D" uid="uid://c20dptaufcvoy" path="res://assets/sprites/branch.png" id="2_tex"]
 
-[node name="Branch" type="Node2D"]
+[node name="Branch" type="Node2D" unique_id=1662977927]
 script = ExtResource("1_branch")
 
-[node name="Sprite2D" type="Sprite2D" parent="."]
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1531653425]
 position = Vector2(0, -3)
 scale = Vector2(1.8, 1.8)
 texture = ExtResource("2_tex")
