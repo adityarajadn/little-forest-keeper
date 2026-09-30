@@ -17,9 +17,12 @@ config/icon="res://icon.svg"
 
 [autoload]
 
-AudioManager="*res://scripts/audio_manager.gd"
-GuiTransitions="*uid://lbwvyqfdnu7x"
+GuiTransitions="*res://addons/simple-gui-transitions/singleton.gd"
 SceneTransition="*res://scenes/ui/scene_transition.tscn"
+UiAnimationHandler="*res://addons/godot_ui_animations/UIAnimationHandler.tscn"
+AudioManager="*res://scripts/audio_manager.gd"
+ButtonAudioHandler="*res://scripts/button_audio_handler.gd"
+GameManager="*uid://camd22j6gr2gx"
 
 [display]
 
@@ -30,7 +33,7 @@ window/stretch/aspect="expand"
 
 [editor_plugins]
 
-enabled=PackedStringArray("res://addons/simple-gui-transitions/plugin.cfg", "res://addons/virtual_joystick/plugin.cfg")
+enabled=PackedStringArray("res://addons/simple-gui-transitions/plugin.cfg", "res://addons/virtual_joystick/plugin.cfg", "res://addons/godot_mcp/plugin.cfg")
 
 [gui]
 

@@ -5,6 +5,7 @@ class_name ForestLeaves
 
 func _ready() -> void:
 	add_to_group("leaves_ground")
+	AudioManager.play_sfx(preload("res://assets/audio/Item Pop.wav"))
 	var tween = create_tween().set_trans(Tween.TRANS_BOUNCE).set_ease(Tween.EASE_OUT)
 	scale = Vector2.ZERO
 	rotation = randf_range(-0.5, 0.5)

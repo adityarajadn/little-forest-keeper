@@ -196,6 +196,7 @@ func _update_hotbar(gm: Node) -> void:
 func _on_species_discovered(_species: String) -> void:
 	if btn_journal:
 		# Animasi kecil pop pada button buku
+		AudioManager.play_sfx(preload("res://assets/audio/Notification.wav"))
 		var tween = create_tween().set_trans(Tween.TRANS_BOUNCE).set_ease(Tween.EASE_OUT)
 		btn_journal.scale = Vector2(1.2, 1.2)
 		tween.tween_property(btn_journal, "scale", Vector2.ONE, 0.4)

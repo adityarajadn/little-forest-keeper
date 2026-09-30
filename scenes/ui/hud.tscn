@@ -12,7 +12,6 @@
 [ext_resource type="Texture2D" uid="uid://bxlstbsb0catm" path="res://assets/sprites/leaves.png" id="7_leaves"]
 [ext_resource type="PackedScene" uid="uid://cchklist0001" path="res://scenes/ui/winter_checklist.tscn" id="8_checklist"]
 [ext_resource type="PackedScene" uid="uid://cwinscrn0001" path="res://scenes/ui/win_screen.tscn" id="9_win"]
-[ext_resource type="PackedScene" uid="uid://dmr0fcamx7t56" path="res://addons/virtual_joystick/virtual_joystick_scene.tscn" id="13_4d46k"]
 
 [sub_resource type="Curve" id="Curve_leaf_scale"]
 _data = [Vector2(0, 0.7), 0.0, 0.5, 0, 0, Vector2(0.5, 1), 0.0, 0.0, 0, 0, Vector2(1, 0.75), -0.4, 0.0, 0, 0]
@@ -281,5 +280,3 @@ visible = false
 
 [node name="WinScreen" parent="." unique_id=892301924 instance=ExtResource("9_win")]
 visible = false
-
-[node name="Virtual Joystick" parent="." unique_id=1281902105 instance=ExtResource("13_4d46k")]

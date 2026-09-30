@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://cif48ghuhu6xw"]
 
 [ext_resource type="Script" path="res://scripts/scene_transition.gd" id="1_trans"]
-[ext_resource type="Script" uid="uid://bimelmc1ce1b2" path="res://addons/simple-gui-transitions/transition.gd" id="2_guitrans"]
+[ext_resource type="Script" path="res://addons/simple-gui-transitions/transition.gd" id="2_guitrans"]
 
 [node name="SceneTransition" type="CanvasLayer" unique_id=987654321]
 process_mode = 3

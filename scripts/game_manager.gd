@@ -1,18 +1,19 @@
 extends Node
-class_name GameManager
 
 signal health_changed(new_health: float, old_health: float)
 signal inventory_changed()
 signal species_discovered(species_name: String)
 signal status_message(text: String)
 signal day_changed(new_day: int)
-signal day_time_updated(day_progress: float) # 0.0 to 1.0 (morning -> noon -> dusk -> night)
+signal day_time_updated(day_progress: float)
 
+const GRID_SIZE: float = 32.0
 
 var current_day: int = 1
 var day_timer: float = 0.0
-@export var day_duration: float = 70.0 # 70 seconds per in-game day (balanced autumn progression)
+@export var day_duration: float = 70.0
 
+var total_nest: int = 0
 
 var forest_health: float = 5.0
 var inventory: Dictionary = {
@@ -28,6 +29,7 @@ var discovered_species: Array[String] = []
 
 var plant_scene: PackedScene = preload("res://scenes/entities/plant.tscn")
 var squirrel_scene: PackedScene = preload("res://scenes/entities/squirrel.tscn")
+var bird_scene: PackedScene = preload("res://scenes/entities/bird.tscn")
 var rabbit_scene: PackedScene = preload("res://scenes/entities/rabbit.tscn")
 var fox_scene: PackedScene = preload("res://scenes/entities/fox.tscn")
 var deer_scene: PackedScene = preload("res://scenes/entities/deer.tscn")
@@ -42,10 +44,12 @@ var squirrel_spawn_cooldown: float = 0.0
 var rabbit_spawn_cooldown: float = 0.0
 var fox_spawn_cooldown: float = 0.0
 var deer_spawn_cooldown: float = 0.0
+var bird_spawn_cooldown: float = 0.0
 var resource_spawn_timer: float = 8.0
 
 
 func _ready() -> void:
+	AudioManager.play_music(preload("res://assets/audio/Autumn BGM.wav"))
 	emit_signal("health_changed", forest_health, 0.0)
 	emit_signal("inventory_changed")
 	emit_signal("day_changed", current_day)
@@ -100,20 +104,20 @@ func use_selected_resource(world_pos: Vector2, parent_node: Node) -> bool:
 			var acorn = acorn_scene.instantiate()
 			acorn.position = world_pos
 			parent_node.add_child(acorn)
-			emit_signal("status_message", "🌰 Placed an Acorn on the ground!")
+			emit_signal("status_message", "Placed an Acorn on the ground!")
 		
 		"water":
 			var water = water_scene.instantiate()
 			water.position = world_pos
 			parent_node.add_child(water)
-			emit_signal("status_message", "💧 Fresh water is flowing!")
+			emit_signal("status_message", "Fresh water is flowing!")
 			add_health(1.5)
 		
 		"mushroom":
 			var shroom = mushroom_scene.instantiate()
 			shroom.position = world_pos
 			parent_node.add_child(shroom)
-			emit_signal("status_message", "🍄 A mushroom grows and enriches the soil!")
+			emit_signal("status_message", "A mushroom grows and enriches the soil!")
 			add_health(1.0)
 		
 		"leaves":
@@ -127,8 +131,9 @@ func use_selected_resource(world_pos: Vector2, parent_node: Node) -> bool:
 				var nest = nest_scene.instantiate()
 				nest.position = (world_pos + nearby_branch.global_position) / 2.0
 				parent_node.add_child(nest)
+				total_nest += 1
 				
-				emit_signal("status_message", "🪺 Leaves + Branch combine to create a Nest!")
+				emit_signal("status_message", "Leaves + Branch combine to create a Nest!")
 				add_health(3.5)
 			else:
 				var leaf_node = leaves_scene.instantiate()
@@ -156,19 +161,17 @@ func use_selected_resource(world_pos: Vector2, parent_node: Node) -> bool:
 				nest.position = (world_pos + nearby_leaf.global_position) / 2.0
 				parent_node.add_child(nest)
 				
-				emit_signal("status_message", "🪺 Branch + Leaves combine to create a Nest!")
+				emit_signal("status_message", "Branch + Leaves combine to create a Nest!")
 				add_health(3.5)
+				total_nest += 1
 			else:
 				var branch_node = branch_scene.instantiate()
 				branch_node.position = world_pos
 				parent_node.add_child(branch_node)
-				
-				emit_signal("status_message", "🪵 Placed a wooden branch!")
-				add_health(0.5)
-	
-	if has_node("/root/AudioManager"):
-		get_node("/root/AudioManager").play_pop()
 		
+	emit_signal("status_message", "🪵 Placed a wooden branch!")
+	add_health(0.5)
+	
 	return true
 
 
@@ -225,9 +228,10 @@ func _spawn_natural_resources() -> void:
 	if not world_layer:
 		world_layer = tree_root.current_scene
 		
+	var grid_size: float = GRID_SIZE
 	var pos = Vector2(
-		randf_range(80, 1200),
-		randf_range(80, 640)
+		randi_range(1, 36) * grid_size + (grid_size / 2.0),
+		randi_range(1, 18) * grid_size + (grid_size / 2.0)
 	)
 	
 	var choice = randf()
@@ -258,10 +262,13 @@ func _spawn_morning_windfall() -> void:
 	if not world_layer:
 		world_layer = tree_root.current_scene
 
-	# Spawn 3-4 natural items across the forest every morning
+	var grid_size: float = GRID_SIZE
 	var count = randi_range(3, 4)
 	for i in range(count):
-		var pos = Vector2(randf_range(90, 1180), randf_range(90, 630))
+		var pos = Vector2(
+			randi_range(1, 36) * grid_size + (grid_size / 2.0),
+			randi_range(1, 18) * grid_size + (grid_size / 2.0)
+		)
 		var roll = randf()
 		if roll < 0.30:
 			var ac = acorn_scene.instantiate()
@@ -289,9 +296,6 @@ func add_resource(res_name: String, amount: int = 1) -> void:
 			"status_message",
 			"+%d %s collected!" % [amount, res_name.capitalize()]
 		)
-		
-		if has_node("/root/AudioManager"):
-			get_node("/root/AudioManager").play_pop(460.0)
 
 
 func add_health(amount: float) -> void:
@@ -308,9 +312,6 @@ func discover(species_name: String) -> void:
 		emit_signal("species_discovered", species_name)
 		emit_signal("status_message", "New friends are coming: " + species_name + "!")
 		add_health(4.0)
-		
-		if has_node("/root/AudioManager"):
-			get_node("/root/AudioManager").play_chime()
 
 
 func _evaluate_ecosystem(_delta: float) -> void:
@@ -367,6 +368,11 @@ func _evaluate_ecosystem(_delta: float) -> void:
 	and deer_spawn_cooldown <= 0.0:
 		_spawn_animal("deer")
 		deer_spawn_cooldown = 22.0
+		
+	if total_nest >= 3 \
+	and bird_spawn_cooldown <= 0.0:
+		_spawn_animal("bird")
+		bird_spawn_cooldown = 10.0
 
 
 
@@ -413,3 +419,9 @@ func _spawn_animal(species: String) -> void:
 		d.position = spawn_pos
 		ysort_layer.add_child(d)
 		discover("Deer")
+		
+	elif species == "bird":
+		var b = bird_scene.instantiate()
+		b.position = spawn_pos
+		ysort_layer.add_child(b)
+		discover("Bird")

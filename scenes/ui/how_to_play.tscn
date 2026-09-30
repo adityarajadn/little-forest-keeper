@@ -144,10 +144,10 @@ layout_mode = 2
 theme_override_colors/font_color = Color(0.85, 0.82, 0.75, 1)
 theme_override_font_sizes/font_size = 13
 text = "Select an item from the Hotbar (Keys 1–4), then click on open ground:
-🌰 Acorn: Attracts Squirrels to come and visit.
-💧 Water: Speeds up the growth of nearby plants by 2×.
-🍄 Mushroom: Improves soil fertility and increases forest health.
-🍂 Leaf: Provides nutrients to nearby bushes."
+- Acorn: Attracts Squirrels to come and visit.
+- Water: Speeds up the growth of nearby plants by 2×.
+- Mushroom: Improves soil fertility and increases forest health.
+- Leaf: Provides nutrients to nearby bushes."
 autowrap_mode = 2
 
 [node name="Card3" type="PanelContainer" parent="PanelContainer/VBox/ScrollContainer/GuideList" unique_id=42177851]

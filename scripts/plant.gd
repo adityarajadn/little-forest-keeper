@@ -70,8 +70,10 @@ func _drop_forest_resource() -> void:
 	var parent_node = get_parent()
 	if not gm or not parent_node:
 		return
-	var offset = Vector2(randf_range(-36.0, 36.0), randf_range(10.0, 42.0))
-	var drop_pos = global_position + offset
+	
+	var offset = Vector2(randi_range(-1, 1) * gm.GRID_SIZE, randi_range(-1, 1) * gm.GRID_SIZE)
+	var drop_pos = (global_position + offset).snapped(Vector2.ONE * gm.GRID_SIZE) + Vector2(gm.GRID_SIZE/2, gm.GRID_SIZE/2)
+	
 	var roll = randf()
 	if roll < 0.40:
 		var ac = gm.acorn_scene.instantiate()

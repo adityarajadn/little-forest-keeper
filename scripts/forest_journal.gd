@@ -18,6 +18,7 @@ signal closed()
 @onready var btn_tab_rabbit: Button = $BookContainer/TabsContainer/TabRabbit
 @onready var btn_tab_fox: Button = $BookContainer/TabsContainer/TabFox
 @onready var btn_tab_deer: Button = $BookContainer/TabsContainer/TabDeer
+@onready var btn_tab_bird: Button = $BookContainer/TabsContainer/TabBird
 
 @onready var btn_prev: Button = $BookContainer/NavContainer/BtnPrev
 @onready var btn_next: Button = $BookContainer/NavContainer/BtnNext
@@ -77,14 +78,29 @@ const ANIMALS_DATA = [
 		"rarity": 95,
 		"contribution": 100,
 		"hint": "Create a thriving and peaceful forest with a fresh water source to welcome this majestic deer."
-	}
+	},
+	{
+		"id": "Bird",
+		"name": "Azure Forest Bird",
+		"tier": "Stage 3 — Renewal",
+		"texture_path": "res://assets/sprites/bird.png",
+		"hframes": 4,
+		"req": "The forest has enough nests.",
+		"role": "A cheerful forest dweller that represents the return of life and balance to the recovering forest.",
+		"lore": "\"Its gentle song echoes through the trees, a melody that signals the forest is beginning to heal and thrive once more.\"",
+		"rarity": 60,
+		"contribution": 65,
+		"hint": "Restore the forest with plenty of food sources and improve its health to attract this lively bird."
+	},
 ]
 
 func _ready() -> void:
+	
 	btn_tab_squirrel.pressed.connect(func(): show_animal(0))
 	btn_tab_rabbit.pressed.connect(func(): show_animal(1))
 	btn_tab_fox.pressed.connect(func(): show_animal(2))
 	btn_tab_deer.pressed.connect(func(): show_animal(3))
+	btn_tab_bird.pressed.connect(func(): show_animal(4))
 	
 	btn_prev.pressed.connect(_on_prev_pressed)
 	btn_next.pressed.connect(_on_next_pressed)
@@ -96,11 +112,14 @@ func _ready() -> void:
 func open_journal() -> void:
 	visible = true
 	show_animal(current_index)
+	UiAnimationHandler.animate_pop($BookContainer)
+	AudioManager.play_sfx(preload("res://assets/audio/Book Open.ogg"))
 
 
 func close_journal() -> void:
 	visible = false
 	emit_signal("closed")
+	
 
 
 func show_animal(index: int) -> void:

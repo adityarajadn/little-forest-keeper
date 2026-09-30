@@ -1,12 +1,12 @@
-[gd_scene load_steps=3 format=3]
+[gd_scene format=3 uid="uid://c2okv67ufuyq1"]
 
-[ext_resource type="Script" path="res://scripts/mushroom.gd" id="1_shroom"]
-[ext_resource type="Texture2D" path="res://assets/sprites/mushroom.png" id="2_tex"]
+[ext_resource type="Script" uid="uid://hcakpiexc7hi" path="res://scripts/mushroom.gd" id="1_shroom"]
+[ext_resource type="Texture2D" uid="uid://6baolmt1tewd" path="res://assets/sprites/mushroom.png" id="2_tex"]
 
-[node name="Mushroom" type="Node2D"]
+[node name="Mushroom" type="Node2D" unique_id=1004311974]
 script = ExtResource("1_shroom")
 
-[node name="Sprite2D" type="Sprite2D" parent="."]
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1536519343]
 position = Vector2(0, -6)
 scale = Vector2(2, 2)
 texture = ExtResource("2_tex")
